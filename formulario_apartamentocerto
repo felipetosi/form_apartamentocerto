@@ -588,7 +588,7 @@
             <option>Dividir igualmente entre os 3</option>
             <option>Priorizar Hípica (pré-lançamento)</option>
             <option>Priorizar Heaven (em obras)</option>
-            <option>Priorizar Green Haven (pronto)</option>
+            <option>Priorizar Green View (pronto)</option>
             <option>Definir junto com a gestora</option>
           </select>
         </div>
@@ -714,11 +714,11 @@
         </div>
       </div>
 
-      <!-- GREEN HAVEN -->
+      <!-- Green View -->
       <div class="emp-card emp-green">
         <div class="emp-card-header">
           <div class="emp-tag">Pronto para Morar</div>
-          <h3>Green Haven — Butantã</h3>
+          <h3>Green View — Butantã</h3>
         </div>
         <div class="emp-card-body">
           <div class="two-col">
@@ -732,7 +732,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label>Quais são os 3 principais diferenciais do Green Haven para usar nos anúncios?</label>
+            <label>Quais são os 3 principais diferenciais do Green View para usar nos anúncios?</label>
             <textarea id="green_dif" placeholder="Ex: Pronto para morar, área verde, próximo ao metrô Butantã..."></textarea>
           </div>
           <div class="form-group">
@@ -759,55 +759,171 @@
       <div class="section-number">4</div>
       <div>
         <h2>Público-Alvo e Direção de Criativos</h2>
-        <div class="section-sub">Para construir anúncios que realmente convertem</div>
+        <div class="section-sub">Detalhado por empreendimento — públicos e estratégias diferentes para cada campanha</div>
       </div>
     </div>
     <div class="section-body">
 
-      <div class="form-group">
-        <label>Qual faixa etária é o foco principal das campanhas? <span class="required">*</span></label>
-        <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="faixa"> <span>25–34 anos</span></label>
-          <label class="check-item"><input type="checkbox" name="faixa"> <span>35–44 anos</span></label>
-          <label class="check-item"><input type="checkbox" name="faixa"> <span>45–54 anos</span></label>
-          <label class="check-item"><input type="checkbox" name="faixa"> <span>55+ anos</span></label>
+      <!-- HIPICA -->
+      <div class="emp-card emp-hipica">
+        <div class="emp-card-header">
+          <div class="emp-tag">Pré-lançamento</div>
+          <h3>Hípica — Público e Criativos</h3>
+        </div>
+        <div class="emp-card-body">
+          <div class="form-group">
+            <label>Faixa etária principal</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="faixa_hipica"> <span>25–34 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_hipica"> <span>35–44 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_hipica"> <span>45–54 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_hipica"> <span>55+ anos</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Regiões de SP a priorizar na segmentação</label>
+            <textarea id="regioes_hipica" placeholder="Ex: Zona Sul — Morumbi, Brooklin, Santo Amaro, Campo Belo..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Interesses e comportamentos do público-alvo</label>
+            <textarea id="interesses_hipica" placeholder="Ex: Famílias com filhos, esportes equestres, qualidade de vida, bairros nobres, pets..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tipos de criativo que funcionam melhor para esse público</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="criativo_hipica"> <span>Renders / perspectivas</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_hipica"> <span>Vídeo conceito</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_hipica"> <span>Estilo de vida / lifestyle</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_hipica"> <span>Dados e área do terreno</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_hipica"> <span>Lazer e infraestrutura</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_hipica"> <span>Localização e mapa</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mensagem principal dos anúncios</label>
+            <textarea id="msg_hipica" placeholder="Ex: O maior empreendimento de alto padrão da Zona Sul. Lazer de clube, 50.000m² de área verde..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Concorrentes diretos a se diferenciar</label>
+            <input type="text" id="conc_hipica" placeholder="Ex: Outros lançamentos em Santo Amaro, Morumbi...">
+          </div>
+          <div class="form-group">
+            <label>Materiais de marketing disponíveis?</label>
+            <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+              <label class="check-item"><input type="radio" name="mat_hipica"> <span>Sim, tenho tudo</span></label>
+              <label class="check-item"><input type="radio" name="mat_hipica"> <span>Tenho parte</span></label>
+              <label class="check-item"><input type="radio" name="mat_hipica"> <span>Preciso solicitar</span></label>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Quais regiões de São Paulo priorizar na segmentação? <span class="required">*</span></label>
-        <textarea id="regioes" placeholder="Ex: Zona Sul (Morumbi, Brooklin, Santo Amaro), Zona Oeste (Pinheiros, Vila Madalena), Centro Expandido..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>Que tipo de criativo você acredita que funciona melhor para esse público?</label>
-        <div class="check-grid">
-          <label class="check-item"><input type="checkbox" name="criativo"> <span>Vídeo tour do empreendimento</span></label>
-          <label class="check-item"><input type="checkbox" name="criativo"> <span>Renders / perspectivas</span></label>
-          <label class="check-item"><input type="checkbox" name="criativo"> <span>Fotos reais (obras)</span></label>
-          <label class="check-item"><input type="checkbox" name="criativo"> <span>Depoimento de clientes</span></label>
-          <label class="check-item"><input type="checkbox" name="criativo"> <span>Estilo de vida / lifestyle</span></label>
-          <label class="check-item"><input type="checkbox" name="criativo"> <span>Dados e números</span></label>
+      <!-- HEAVEN -->
+      <div class="emp-card emp-heaven">
+        <div class="emp-card-header">
+          <div class="emp-tag">Em Obras</div>
+          <h3>Heaven — Público e Criativos</h3>
+        </div>
+        <div class="emp-card-body">
+          <div class="form-group">
+            <label>Faixa etária principal</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="faixa_heaven"> <span>25–34 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_heaven"> <span>35–44 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_heaven"> <span>45–54 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_heaven"> <span>55+ anos</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Regiões de SP a priorizar na segmentação</label>
+            <textarea id="regioes_heaven" placeholder="Ex: Centro Expandido — Jardins, Itaim, Vila Olímpia, Bela Vista, Paraíso..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Interesses e comportamentos do público-alvo</label>
+            <textarea id="interesses_heaven" placeholder="Ex: Executivos C-Level, público LGBTQIA+, arte e cultura, gastronomia, alta renda..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tipos de criativo que funcionam melhor para esse público</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="criativo_heaven"> <span>Renders sofisticados</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_heaven"> <span>Vídeo de obra</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_heaven"> <span>Destaque de localização</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_heaven"> <span>Arquitetura e design</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_heaven"> <span>Estilo de vida urbano</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_heaven"> <span>Valorização patrimonial</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mensagem principal dos anúncios</label>
+            <textarea id="msg_heaven" placeholder="Ex: Sofisticação e localização única na Bela Vista. Para quem vive o melhor de São Paulo..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Concorrentes diretos a se diferenciar</label>
+            <input type="text" id="conc_heaven" placeholder="Ex: Outros lançamentos na Bela Vista, Jardins, Paraíso...">
+          </div>
+          <div class="form-group">
+            <label>Materiais de marketing disponíveis?</label>
+            <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+              <label class="check-item"><input type="radio" name="mat_heaven"> <span>Sim, tenho tudo</span></label>
+              <label class="check-item"><input type="radio" name="mat_heaven"> <span>Tenho parte</span></label>
+              <label class="check-item"><input type="radio" name="mat_heaven"> <span>Preciso solicitar</span></label>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Você tem acesso a materiais de marketing (fotos, vídeos, renders) fornecidos pela Lavvi? <span class="required">*</span></label>
-        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
-          <label class="check-item"><input type="radio" name="materiais"> <span>Sim, tenho tudo</span></label>
-          <label class="check-item"><input type="radio" name="materiais"> <span>Tenho parte</span></label>
-          <label class="check-item"><input type="radio" name="materiais"> <span>Preciso solicitar</span></label>
+      <!-- GREEN VIEW -->
+      <div class="emp-card emp-green">
+        <div class="emp-card-header">
+          <div class="emp-tag">Pronto para Morar</div>
+          <h3>Green View — Público e Criativos</h3>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label>Qual a principal mensagem que você quer passar nos anúncios?</label>
-        <textarea id="mensagem" placeholder="Ex: Exclusividade e localização, qualidade de vida para a família, investimento seguro e valorizado..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>Há algum concorrente direto que você quer se diferenciar nos anúncios?</label>
-        <textarea id="concorrentes" placeholder="Ex: Outros lançamentos da região, construtoras concorrentes..."></textarea>
+        <div class="emp-card-body">
+          <div class="form-group">
+            <label>Faixa etária principal</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="faixa_green"> <span>25–34 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_green"> <span>35–44 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_green"> <span>45–54 anos</span></label>
+              <label class="check-item"><input type="checkbox" name="faixa_green"> <span>55+ anos</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Regiões de SP a priorizar na segmentação</label>
+            <textarea id="regioes_green" placeholder="Ex: Zona Oeste — Butantã, Pinheiros, Vila Madalena, Perdizes, Lapa..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Interesses e comportamentos do público-alvo</label>
+            <textarea id="interesses_green" placeholder="Ex: Profissionais liberais, médicos, investidores, universitários premium, sustentabilidade..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tipos de criativo que funcionam melhor para esse público</label>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" name="criativo_green"> <span>Fotos reais do pronto</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_green"> <span>Vídeo tour do imóvel</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_green"> <span>Área verde / natureza</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_green"> <span>Pronto para morar já</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_green"> <span>Proximidade ao metrô</span></label>
+              <label class="check-item"><input type="checkbox" name="criativo_green"> <span>Urgência / últimas unidades</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mensagem principal dos anúncios</label>
+            <textarea id="msg_green" placeholder="Ex: Pronto para morar. Área verde no coração do Butantã, a minutos do metrô..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Concorrentes diretos a se diferenciar</label>
+            <input type="text" id="conc_green" placeholder="Ex: Outros prontos na Zona Oeste, Butantã, Pinheiros...">
+          </div>
+          <div class="form-group">
+            <label>Materiais de marketing disponíveis?</label>
+            <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+              <label class="check-item"><input type="radio" name="mat_green"> <span>Sim, tenho tudo</span></label>
+              <label class="check-item"><input type="radio" name="mat_green"> <span>Tenho parte</span></label>
+              <label class="check-item"><input type="radio" name="mat_green"> <span>Preciso solicitar</span></label>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1000,7 +1116,7 @@ function gerarResumo() {
       { label: 'Entrega', value: val('heaven_entrega') },
       { label: 'Objeção principal', value: val('heaven_objecao') },
     ]},
-    { titulo: '5. Green Haven', campos: [
+    { titulo: '5. Green View', campos: [
       { label: 'Ticket médio', value: val('green_ticket') },
       { label: 'Tipologias', value: val('green_tipos') },
       { label: 'Diferenciais', value: val('green_dif') },
@@ -1008,13 +1124,32 @@ function gerarResumo() {
       { label: 'Unidades disponíveis', value: val('green_unidades') },
       { label: 'Objeção principal', value: val('green_objecao') },
     ]},
-    { titulo: '6. Público e Criativos', campos: [
-      { label: 'Faixas etárias', value: checkVals('faixa') },
-      { label: 'Regiões prioritárias', value: val('regioes') },
-      { label: 'Tipos de criativo', value: checkVals('criativo') },
-      { label: 'Materiais disponíveis', value: radioVal('materiais') },
-      { label: 'Mensagem principal', value: val('mensagem') },
-      { label: 'Concorrentes a diferenciar', value: val('concorrentes') },
+    { titulo: '6. Hípica — Público e Criativos', campos: [
+      { label: 'Faixa etária', value: checkVals('faixa_hipica') },
+      { label: 'Regiões', value: val('regioes_hipica') },
+      { label: 'Interesses', value: val('interesses_hipica') },
+      { label: 'Criativos', value: checkVals('criativo_hipica') },
+      { label: 'Mensagem', value: val('msg_hipica') },
+      { label: 'Concorrentes', value: val('conc_hipica') },
+      { label: 'Materiais', value: radioVal('mat_hipica') },
+    ]},
+    { titulo: '7. Heaven — Público e Criativos', campos: [
+      { label: 'Faixa etária', value: checkVals('faixa_heaven') },
+      { label: 'Regiões', value: val('regioes_heaven') },
+      { label: 'Interesses', value: val('interesses_heaven') },
+      { label: 'Criativos', value: checkVals('criativo_heaven') },
+      { label: 'Mensagem', value: val('msg_heaven') },
+      { label: 'Concorrentes', value: val('conc_heaven') },
+      { label: 'Materiais', value: radioVal('mat_heaven') },
+    ]},
+    { titulo: '8. Green View — Público e Criativos', campos: [
+      { label: 'Faixa etária', value: checkVals('faixa_green') },
+      { label: 'Regiões', value: val('regioes_green') },
+      { label: 'Interesses', value: val('interesses_green') },
+      { label: 'Criativos', value: checkVals('criativo_green') },
+      { label: 'Mensagem', value: val('msg_green') },
+      { label: 'Concorrentes', value: val('conc_green') },
+      { label: 'Materiais', value: radioVal('mat_green') },
     ]},
     { titulo: '7. Operação', campos: [
       { label: 'Destino dos leads', value: radioVal('destino') },
