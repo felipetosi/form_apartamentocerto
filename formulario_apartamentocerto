@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Onboarding — Gestão de Mídia Apartamento Certo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f4f4f0;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #C8185A;
+    color: white;
+    padding: 40px 48px 36px;
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+  }
+
+  header .logo-area {
+    flex: 1;
+  }
+
+  header .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  header p {
+    font-size: 14px;
+    opacity: 0.85;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.2);
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 28px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    background: white;
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .section {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: none;
+  }
+
+  .section.active { display: block; }
+
+  .section-header {
+    background: #1a1a1a;
+    color: white;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-number {
+    background: #C8185A;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .section-header .section-sub {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .section-body {
+    padding: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    letter-spacing: 0.2px;
+  }
+
+  label .required {
+    color: #C8185A;
+    margin-left: 3px;
+  }
+
+  label .hint {
+    font-weight: 400;
+    color: #888;
+    font-size: 12px;
+    margin-left: 6px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #1a1a1a;
+    background: #fafafa;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    outline: none;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #C8185A;
+    box-shadow: 0 0 0 3px rgba(200, 24, 90, 0.1);
+    background: white;
+  }
+
+  textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Checkbox grid */
+  .check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid #e8e8e8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .check-item:hover { border-color: #C8185A; background: #fff5f8; }
+
+  .check-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #C8185A;
+    flex-shrink: 0;
+  }
+
+  .check-item span {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.3;
+  }
+
+  .check-item.checked {
+    border-color: #C8185A;
+    background: #fff0f5;
+  }
+
+  /* Empreendimento cards */
+  .emp-card {
+    border: 2px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .emp-card-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .emp-hípica .emp-card-header { background: #fff8e1; border-bottom: 2px solid #ffd54f; }
+  .emp-heaven .emp-card-header { background: #f3e5f5; border-bottom: 2px solid #ba68c8; }
+  .emp-green .emp-card-header { background: #e8f5e9; border-bottom: 2px solid #66bb6a; }
+
+  .emp-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .emp-hípica .emp-tag { background: #ffd54f; color: #5d4037; }
+  .emp-heaven .emp-tag { background: #ba68c8; color: white; }
+  .emp-green .emp-tag { background: #66bb6a; color: white; }
+
+  .emp-card-header h3 { font-size: 15px; font-weight: 700; flex: 1; }
+
+  .emp-card-body {
+    padding: 20px;
+    background: white;
+  }
+
+  /* Range slider */
+  .slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .slider-wrap input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    border: none;
+    padding: 0;
+  }
+
+  .slider-wrap input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #C8185A;
+    cursor: pointer;
+  }
+
+  .slider-value {
+    background: #C8185A;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* Priority rank */
+  .rank-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    border: 1.5px solid #e8e8e8;
+    cursor: grab;
+  }
+
+  .rank-num {
+    background: #C8185A;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .rank-item span { font-size: 13px; font-weight: 600; }
+
+  /* Navigation */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    gap: 16px;
+  }
+
+  .btn {
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: #C8185A;
+    color: white;
+    flex: 1;
+    max-width: 280px;
+  }
+
+  .btn-primary:hover { background: #a8144a; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: #888;
+    border: 1.5px solid #ddd;
+  }
+
+  .btn-secondary:hover { color: #333; border-color: #aaa; }
+
+  .btn-export {
+    background: #1a1a1a;
+    color: white;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-top: 12px;
+  }
+
+  .btn-export:hover { background: #333; }
+
+  .step-indicator {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ddd;
+    transition: all 0.2s;
+  }
+
+  .step-dot.active {
+    background: #C8185A;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .step-dot.done { background: #C8185A; opacity: 0.4; }
+
+  /* Summary */
+  .summary-section {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: none;
+  }
+
+  .summary-section.active { display: block; }
+
+  .summary-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #C8185A;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .summary-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+  }
+
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: #888; min-width: 180px; }
+  .summary-value { font-weight: 600; color: #1a1a1a; flex: 1; }
+
+  .divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 20px 0;
+  }
+
+  .info-box {
+    background: #fff5f8;
+    border: 1px solid #ffd0e0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #a01040;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 600px) {
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    header { padding: 28px 20px; }
+    header h1 { font-size: 20px; }
+    main { padding: 24px 12px 60px; }
+    .section-body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <div class="badge">Gestão de Mídia · Apartamento Certo</div>
+    <h1>Formulário de Onboarding<br>de Campanhas</h1>
+    <p>Preencha com atenção — essas respostas vão guiar toda a estratégia de tráfego pago dos empreendimentos.</p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- SEÇÃO 1: CONTEXTO GERAL -->
+  <div class="section active" id="section-1">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div>
+        <h2>Contexto Geral da Corretora</h2>
+        <div class="section-sub">Entendendo sua atuação e posicionamento</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="two-col">
+        <div class="form-group">
+          <label>Seu nome completo <span class="required">*</span></label>
+          <input type="text" id="nome" placeholder="Ex: Ana Paula Ferreira">
+        </div>
+        <div class="form-group">
+          <label>Telefone / WhatsApp <span class="required">*</span></label>
+          <input type="text" id="telefone" placeholder="(11) 99999-9999">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Há quanto tempo você trabalha com imóveis de alto padrão? <span class="required">*</span></label>
+        <select id="experiencia">
+          <option value="">Selecione...</option>
+          <option>Menos de 1 ano</option>
+          <option>1 a 3 anos</option>
+          <option>3 a 5 anos</option>
+          <option>Mais de 5 anos</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Você já utilizou tráfego pago antes? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item">
+            <input type="radio" name="trafego_anterior" value="sim_bom"> <span>Sim, com bons resultados</span>
+          </label>
+          <label class="check-item">
+            <input type="radio" name="trafego_anterior" value="sim_ruim"> <span>Sim, mas sem resultado claro</span>
+          </label>
+          <label class="check-item">
+            <input type="radio" name="trafego_anterior" value="nao"> <span>Nunca usei</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Como você recebe seus leads hoje? <span class="hint">(pode marcar mais de um)</span></label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="origem_lead"> <span>Indicação</span></label>
+          <label class="check-item"><input type="checkbox" name="origem_lead"> <span>Instagram orgânico</span></label>
+          <label class="check-item"><input type="checkbox" name="origem_lead"> <span>Portais (Zap, Viva Real)</span></label>
+          <label class="check-item"><input type="checkbox" name="origem_lead"> <span>Plantão / stand</span></label>
+          <label class="check-item"><input type="checkbox" name="origem_lead"> <span>Construtora direta</span></label>
+          <label class="check-item"><input type="checkbox" name="origem_lead"> <span>Outro</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Qual é sua maior dificuldade hoje no processo de vendas?</label>
+        <textarea id="dificuldade" placeholder="Ex: Os leads chegam frios, não tenho tempo para prospectar, os contatos somem no WhatsApp..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2: ORÇAMENTO E METAS -->
+  <div class="section" id="section-2">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div>
+        <h2>Orçamento e Metas de Campanha</h2>
+        <div class="section-sub">Definindo investimento e expectativas realistas</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="form-group">
+        <label>Qual será o investimento mensal total em anúncios (verba de mídia)? <span class="required">*</span></label>
+        <div class="slider-wrap">
+          <input type="range" id="orcamento_slider" min="1000" max="20000" step="500" value="3000" oninput="updateSlider('orcamento_slider', 'orcamento_val', 'R$ ', '')">
+          <div class="slider-value" id="orcamento_val">R$ 3.000</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="form-group">
+          <label>Como você prefere distribuir o orçamento? <span class="required">*</span></label>
+          <select id="dist_orcamento">
+            <option value="">Selecione...</option>
+            <option>Dividir igualmente entre os 3</option>
+            <option>Priorizar Hípica (pré-lançamento)</option>
+            <option>Priorizar Heaven (em obras)</option>
+            <option>Priorizar Green Haven (pronto)</option>
+            <option>Definir junto com a gestora</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Meta de leads por mês (total) <span class="required">*</span></label>
+          <input type="number" id="meta_leads" placeholder="Ex: 60" min="10" max="500">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Qual o prazo que você considera ideal para um lead virar visita? <span class="required">*</span></label>
+        <select id="prazo_visita">
+          <option value="">Selecione...</option>
+          <option>Em até 3 dias</option>
+          <option>Em até 1 semana</option>
+          <option>Em até 2 semanas</option>
+          <option>Não tenho prazo definido</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Você tem estrutura para atender leads rapidamente (em até 5 min)? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item"><input type="radio" name="atendimento"> <span>Sim, atendo eu mesma</span></label>
+          <label class="check-item"><input type="radio" name="atendimento"> <span>Tenho assistente</span></label>
+          <label class="check-item"><input type="radio" name="atendimento"> <span>Ainda vou organizar</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Você usa algum CRM ou sistema para organizar os leads? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item"><input type="radio" name="crm"> <span>Sim (qual?)</span></label>
+          <label class="check-item"><input type="radio" name="crm"> <span>Só planilha</span></label>
+          <label class="check-item"><input type="radio" name="crm"> <span>Não uso nada</span></label>
+        </div>
+        <input type="text" id="crm_qual" placeholder="Se usa CRM, informe qual..." style="margin-top: 10px;">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3: EMPREENDIMENTOS -->
+  <div class="section" id="section-3">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div>
+        <h2>Os Empreendimentos</h2>
+        <div class="section-sub">Detalhes específicos de cada produto para orientar os criativos</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <!-- HÍPICA -->
+      <div class="emp-card emp-hípica">
+        <div class="emp-card-header">
+          <div class="emp-tag">Pré-lançamento</div>
+          <h3>Hípica — Santo Amaro</h3>
+        </div>
+        <div class="emp-card-body">
+          <div class="two-col">
+            <div class="form-group">
+              <label>Faixa de preço (ticket médio)</label>
+              <input type="text" id="hipica_ticket" placeholder="Ex: R$ 1,2M a R$ 2,5M">
+            </div>
+            <div class="form-group">
+              <label>Tipologias disponíveis</label>
+              <input type="text" id="hipica_tipos" placeholder="Ex: 3 e 4 dorms, 120 a 200m²">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Quais são os 3 principais diferenciais do Hípica para usar nos anúncios?</label>
+            <textarea id="hipica_dif" placeholder="Ex: 50.000m² de área total, lazer de clube completo, única reserva verde próxima à Hípica de Santo Amaro..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Qual o perfil do comprador ideal deste empreendimento?</label>
+            <textarea id="hipica_perfil" placeholder="Ex: Famílias que buscam espaço, qualidade de vida, afastadas do centro mas com boa mobilidade..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Data prevista de lançamento oficial</label>
+            <input type="text" id="hipica_lancamento" placeholder="Ex: Abril 2025 / a definir">
+          </div>
+          <div class="form-group">
+            <label>Principal objeção que os clientes têm sobre este produto</label>
+            <textarea id="hipica_objecao" placeholder="Ex: Localização, prazo de entrega, preço..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEAVEN -->
+      <div class="emp-card emp-heaven">
+        <div class="emp-card-header">
+          <div class="emp-tag">Em Obras</div>
+          <h3>Heaven — Bela Vista</h3>
+        </div>
+        <div class="emp-card-body">
+          <div class="two-col">
+            <div class="form-group">
+              <label>Faixa de preço (ticket médio)</label>
+              <input type="text" id="heaven_ticket" placeholder="Ex: R$ 1,8M a R$ 3,5M">
+            </div>
+            <div class="form-group">
+              <label>Tipologias disponíveis</label>
+              <input type="text" id="heaven_tipos" placeholder="Ex: 2 e 3 dorms, studios, coberturas">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Quais são os 3 principais diferenciais do Heaven para usar nos anúncios?</label>
+            <textarea id="heaven_dif" placeholder="Ex: Localização única na Bela Vista, arquitetura sofisticada, vista para o centro..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Qual o perfil do comprador ideal deste empreendimento?</label>
+            <textarea id="heaven_perfil" placeholder="Ex: Executivos, público LGBTQIA+, quem valoriza localização e sofisticação..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Previsão de entrega</label>
+            <input type="text" id="heaven_entrega" placeholder="Ex: 2º semestre de 2026">
+          </div>
+          <div class="form-group">
+            <label>Principal objeção que os clientes têm sobre este produto</label>
+            <textarea id="heaven_objecao" placeholder="Ex: Obra em andamento, preço, comparação com concorrentes..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- GREEN HAVEN -->
+      <div class="emp-card emp-green">
+        <div class="emp-card-header">
+          <div class="emp-tag">Pronto para Morar</div>
+          <h3>Green Haven — Butantã</h3>
+        </div>
+        <div class="emp-card-body">
+          <div class="two-col">
+            <div class="form-group">
+              <label>Faixa de preço (ticket médio)</label>
+              <input type="text" id="green_ticket" placeholder="Ex: R$ 900k a R$ 1,8M">
+            </div>
+            <div class="form-group">
+              <label>Tipologias disponíveis</label>
+              <input type="text" id="green_tipos" placeholder="Ex: 2 e 3 dorms, 85 a 140m²">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Quais são os 3 principais diferenciais do Green Haven para usar nos anúncios?</label>
+            <textarea id="green_dif" placeholder="Ex: Pronto para morar, área verde, próximo ao metrô Butantã..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Qual o perfil do comprador ideal deste empreendimento?</label>
+            <textarea id="green_perfil" placeholder="Ex: Profissionais liberais, famílias jovens, investidores..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Unidades ainda disponíveis (aproximado)</label>
+            <input type="text" id="green_unidades" placeholder="Ex: 12 unidades / últimas unidades">
+          </div>
+          <div class="form-group">
+            <label>Principal objeção que os clientes têm sobre este produto</label>
+            <textarea id="green_objecao" placeholder="Ex: Localização no Butantã, preço, comparação com outras regiões..."></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4: PÚBLICO E CRIATIVOS -->
+  <div class="section" id="section-4">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div>
+        <h2>Público-Alvo e Direção de Criativos</h2>
+        <div class="section-sub">Para construir anúncios que realmente convertem</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="form-group">
+        <label>Qual faixa etária é o foco principal das campanhas? <span class="required">*</span></label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="faixa"> <span>25–34 anos</span></label>
+          <label class="check-item"><input type="checkbox" name="faixa"> <span>35–44 anos</span></label>
+          <label class="check-item"><input type="checkbox" name="faixa"> <span>45–54 anos</span></label>
+          <label class="check-item"><input type="checkbox" name="faixa"> <span>55+ anos</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Quais regiões de São Paulo priorizar na segmentação? <span class="required">*</span></label>
+        <textarea id="regioes" placeholder="Ex: Zona Sul (Morumbi, Brooklin, Santo Amaro), Zona Oeste (Pinheiros, Vila Madalena), Centro Expandido..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Que tipo de criativo você acredita que funciona melhor para esse público?</label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="criativo"> <span>Vídeo tour do empreendimento</span></label>
+          <label class="check-item"><input type="checkbox" name="criativo"> <span>Renders / perspectivas</span></label>
+          <label class="check-item"><input type="checkbox" name="criativo"> <span>Fotos reais (obras)</span></label>
+          <label class="check-item"><input type="checkbox" name="criativo"> <span>Depoimento de clientes</span></label>
+          <label class="check-item"><input type="checkbox" name="criativo"> <span>Estilo de vida / lifestyle</span></label>
+          <label class="check-item"><input type="checkbox" name="criativo"> <span>Dados e números</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Você tem acesso a materiais de marketing (fotos, vídeos, renders) fornecidos pela Lavvi? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item"><input type="radio" name="materiais"> <span>Sim, tenho tudo</span></label>
+          <label class="check-item"><input type="radio" name="materiais"> <span>Tenho parte</span></label>
+          <label class="check-item"><input type="radio" name="materiais"> <span>Preciso solicitar</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Qual a principal mensagem que você quer passar nos anúncios?</label>
+        <textarea id="mensagem" placeholder="Ex: Exclusividade e localização, qualidade de vida para a família, investimento seguro e valorizado..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Há algum concorrente direto que você quer se diferenciar nos anúncios?</label>
+        <textarea id="concorrentes" placeholder="Ex: Outros lançamentos da região, construtoras concorrentes..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5: OPERAÇÃO E ALINHAMENTO -->
+  <div class="section" id="section-5">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div>
+        <h2>Operação e Alinhamento</h2>
+        <div class="section-sub">Como vamos trabalhar juntas no dia a dia</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="form-group">
+        <label>Para onde você quer que os leads sejam direcionados? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <label class="check-item"><input type="radio" name="destino"> <span>WhatsApp direto</span></label>
+          <label class="check-item"><input type="radio" name="destino"> <span>Formulário do Meta (Lead Ads)</span></label>
+          <label class="check-item"><input type="radio" name="destino"> <span>Landing page da Lavvi</span></label>
+          <label class="check-item"><input type="radio" name="destino"> <span>Definir junto com a gestora</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Com que frequência você quer receber relatórios de performance? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item"><input type="radio" name="relatorio"> <span>Semanal</span></label>
+          <label class="check-item"><input type="radio" name="relatorio"> <span>Quinzenal</span></label>
+          <label class="check-item"><input type="radio" name="relatorio"> <span>Mensal</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Qual canal prefere para comunicação do dia a dia com a gestora? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item"><input type="radio" name="canal_comm"> <span>WhatsApp</span></label>
+          <label class="check-item"><input type="radio" name="canal_comm"> <span>E-mail</span></label>
+          <label class="check-item"><input type="radio" name="canal_comm"> <span>Reunião semanal</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Você tem perfil profissional no Instagram ativo? <span class="required">*</span></label>
+        <input type="text" id="instagram" placeholder="Ex: @ana.ferreira.corretor ou 'ainda não tenho'">
+      </div>
+
+      <div class="form-group">
+        <label>As campanhas rodarão em nome de qual conta de anúncios? <span class="required">*</span></label>
+        <div class="check-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <label class="check-item"><input type="radio" name="conta_ads"> <span>Conta pessoal/profissional minha</span></label>
+          <label class="check-item"><input type="radio" name="conta_ads"> <span>Conta da agência</span></label>
+          <label class="check-item"><input type="radio" name="conta_ads"> <span>A criar</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Existe alguma restrição de comunicação imposta pela Lavvi que devemos respeitar nos anúncios?</label>
+        <textarea id="restricoes" placeholder="Ex: Não mencionar preço, não usar determinadas imagens, seguir manual de marca..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Tem alguma dúvida, expectativa ou pedido especial que queira registrar antes de começarmos?</label>
+        <textarea id="observacoes" placeholder="Espaço livre para qualquer informação relevante..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESUMO FINAL -->
+  <div class="section" id="section-6">
+    <div class="section-header">
+      <div class="section-number">✓</div>
+      <div>
+        <h2>Resumo do Formulário</h2>
+        <div class="section-sub">Confira as informações antes de enviar</div>
+      </div>
+    </div>
+    <div class="section-body" id="resumo-body">
+      <p style="color:#888; font-size:13px; margin-bottom:20px;">Revise abaixo as principais informações preenchidas. Você pode voltar e ajustar qualquer campo.</p>
+      <div id="resumo-conteudo"></div>
+      <div style="margin-top: 24px;">
+        <button class="btn btn-export" onclick="exportarPDF()">⬇ Exportar Resumo como PDF</button>
+        <button class="btn btn-export" style="background:#C8185A; margin-top: 10px;" onclick="copiarTexto()">📋 Copiar Resumo como Texto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" id="btnVoltar" onclick="navegarSecao(-1)" style="display:none">← Voltar</button>
+    <div class="step-indicator" id="stepIndicator"></div>
+    <button class="btn btn-primary" id="btnAvancar" onclick="navegarSecao(1)">Avançar →</button>
+  </div>
+
+</main>
+
+<script>
+let currentSection = 1;
+const totalSections = 6;
+
+function buildStepIndicator() {
+  const el = document.getElementById('stepIndicator');
+  el.innerHTML = '';
+  for (let i = 1; i <= totalSections; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'step-dot' + (i === currentSection ? ' active' : (i < currentSection ? ' done' : ''));
+    el.appendChild(dot);
+  }
+}
+
+function updateProgress() {
+  const pct = ((currentSection - 1) / (totalSections - 1)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function navegarSecao(dir) {
+  if (dir === 1 && currentSection === totalSections - 1) {
+    gerarResumo();
+  }
+
+  document.getElementById('section-' + currentSection).classList.remove('active');
+  currentSection += dir;
+  if (currentSection < 1) currentSection = 1;
+  if (currentSection > totalSections) currentSection = totalSections;
+  document.getElementById('section-' + currentSection).classList.add('active');
+
+  document.getElementById('btnVoltar').style.display = currentSection > 1 ? 'block' : 'none';
+  document.getElementById('btnAvancar').textContent = currentSection === totalSections ? '✓ Concluído' : (currentSection === totalSections - 1 ? 'Ver Resumo →' : 'Avançar →');
+  if (currentSection === totalSections) {
+    document.getElementById('btnAvancar').style.display = 'none';
+  } else {
+    document.getElementById('btnAvancar').style.display = 'block';
+  }
+
+  buildStepIndicator();
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? (el.value || '—') : '—';
+}
+
+function radioVal(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.parentElement.querySelector('span').textContent : '—';
+}
+
+function checkVals(name) {
+  const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+  if (!els.length) return '—';
+  return Array.from(els).map(e => e.parentElement.querySelector('span').textContent).join(', ');
+}
+
+function gerarResumo() {
+  const data = [
+    { titulo: '1. Contexto Geral', campos: [
+      { label: 'Nome', value: val('nome') },
+      { label: 'Telefone', value: val('telefone') },
+      { label: 'Experiência', value: val('experiencia') },
+      { label: 'Tráfego anterior', value: radioVal('trafego_anterior') },
+      { label: 'Origem atual de leads', value: checkVals('origem_lead') },
+      { label: 'Maior dificuldade', value: val('dificuldade') },
+    ]},
+    { titulo: '2. Orçamento e Metas', campos: [
+      { label: 'Verba de mídia mensal', value: document.getElementById('orcamento_val').textContent },
+      { label: 'Distribuição do orçamento', value: val('dist_orcamento') },
+      { label: 'Meta de leads/mês', value: val('meta_leads') },
+      { label: 'Prazo lead → visita', value: val('prazo_visita') },
+      { label: 'Atendimento de leads', value: radioVal('atendimento') },
+      { label: 'CRM utilizado', value: radioVal('crm') + (val('crm_qual') !== '—' ? ' — ' + val('crm_qual') : '') },
+    ]},
+    { titulo: '3. Hípica', campos: [
+      { label: 'Ticket médio', value: val('hipica_ticket') },
+      { label: 'Tipologias', value: val('hipica_tipos') },
+      { label: 'Diferenciais', value: val('hipica_dif') },
+      { label: 'Perfil do comprador', value: val('hipica_perfil') },
+      { label: 'Lançamento', value: val('hipica_lancamento') },
+      { label: 'Objeção principal', value: val('hipica_objecao') },
+    ]},
+    { titulo: '4. Heaven', campos: [
+      { label: 'Ticket médio', value: val('heaven_ticket') },
+      { label: 'Tipologias', value: val('heaven_tipos') },
+      { label: 'Diferenciais', value: val('heaven_dif') },
+      { label: 'Perfil do comprador', value: val('heaven_perfil') },
+      { label: 'Entrega', value: val('heaven_entrega') },
+      { label: 'Objeção principal', value: val('heaven_objecao') },
+    ]},
+    { titulo: '5. Green Haven', campos: [
+      { label: 'Ticket médio', value: val('green_ticket') },
+      { label: 'Tipologias', value: val('green_tipos') },
+      { label: 'Diferenciais', value: val('green_dif') },
+      { label: 'Perfil do comprador', value: val('green_perfil') },
+      { label: 'Unidades disponíveis', value: val('green_unidades') },
+      { label: 'Objeção principal', value: val('green_objecao') },
+    ]},
+    { titulo: '6. Público e Criativos', campos: [
+      { label: 'Faixas etárias', value: checkVals('faixa') },
+      { label: 'Regiões prioritárias', value: val('regioes') },
+      { label: 'Tipos de criativo', value: checkVals('criativo') },
+      { label: 'Materiais disponíveis', value: radioVal('materiais') },
+      { label: 'Mensagem principal', value: val('mensagem') },
+      { label: 'Concorrentes a diferenciar', value: val('concorrentes') },
+    ]},
+    { titulo: '7. Operação', campos: [
+      { label: 'Destino dos leads', value: radioVal('destino') },
+      { label: 'Frequência de relatório', value: radioVal('relatorio') },
+      { label: 'Canal de comunicação', value: radioVal('canal_comm') },
+      { label: 'Instagram', value: val('instagram') },
+      { label: 'Conta de anúncios', value: radioVal('conta_ads') },
+      { label: 'Restrições da Lavvi', value: val('restricoes') },
+      { label: 'Observações finais', value: val('observacoes') },
+    ]},
+  ];
+
+  let html = '';
+  data.forEach(sec => {
+    html += `<div style="margin-bottom:20px;">
+      <div style="font-weight:800;font-size:13px;color:#C8185A;text-transform:uppercase;letter-spacing:1px;padding-bottom:8px;border-bottom:2px solid #f0f0f0;margin-bottom:12px;">${sec.titulo}</div>`;
+    sec.campos.forEach(c => {
+      html += `<div class="summary-row"><div class="summary-label">${c.label}</div><div class="summary-value">${c.value}</div></div>`;
+    });
+    html += `</div>`;
+  });
+
+  document.getElementById('resumo-conteudo').innerHTML = html;
+}
+
+function exportarPDF() {
+  window.print();
+}
+
+function copiarTexto() {
+  const linhas = [];
+  linhas.push('FORMULÁRIO DE ONBOARDING — GESTÃO DE MÍDIA LAVVI');
+  linhas.push('='.repeat(50));
+
+  const rows = document.querySelectorAll('.summary-row');
+  rows.forEach(r => {
+    const label = r.querySelector('.summary-label')?.textContent || '';
+    const value = r.querySelector('.summary-value')?.textContent || '';
+    linhas.push(`${label}: ${value}`);
+  });
+
+  navigator.clipboard.writeText(linhas.join('\n')).then(() => {
+    alert('Resumo copiado para a área de transferência!');
+  });
+}
+
+function updateSlider(sliderId, valId, prefix, suffix) {
+  const val = parseInt(document.getElementById(sliderId).value);
+  document.getElementById(valId).textContent = prefix + val.toLocaleString('pt-BR') + suffix;
+}
+
+// Check items visual feedback
+document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    cb.parentElement.classList.toggle('checked', cb.checked);
+  });
+});
+
+document.querySelectorAll('.check-item input[type="radio"]').forEach(rb => {
+  rb.addEventListener('change', () => {
+    document.querySelectorAll(`input[name="${rb.name}"]`).forEach(r => {
+      r.parentElement.classList.remove('checked');
+    });
+    rb.parentElement.classList.add('checked');
+  });
+});
+
+// Init
+buildStepIndicator();
+updateProgress();
+</script>
+
+</body>
+</html>
